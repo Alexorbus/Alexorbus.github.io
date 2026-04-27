@@ -2,6 +2,15 @@
 <html>
 <head>
   <style>
+  .bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 1024px;
+  height: 1024px;
+  z-index: -1;
+  pointer-events: none;
+}
   .update {
   display: block;
   opacity: 0.5;
@@ -36,10 +45,25 @@
   </style>
 </head>
 <body>
+  <video autoplay muted loop playsinline class="bg-video" style="top:0; left:0;">
+  <source src="backround10001-0096.webm" type="video/webm">
+</video>
+
+<video autoplay muted loop playsinline class="bg-video" style="top:0; left:1024px;">
+  <source src="backround10001-0096.webm" type="video/webm">
+</video>
+
+<video autoplay muted loop playsinline class="bg-video" style="top:1024px; left:0;">
+  <source src="backround10001-0096.webm" type="video/webm">
+</video>
+
+<video autoplay muted loop playsinline class="bg-video" style="top:1024px; left:1024px;">
+  <source src="backround10001-0096.webm" type="video/webm">
+</video>
 
   <h1>Alex (or bus)</h1>
   <p>
-  v5
+  v6
   <span class="update">last updated 4/27/26 16:42</span>
   <span class="goals">next goal: add a backround and make the artworks bigger for viewing</span>
 </p>
