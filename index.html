@@ -16,12 +16,17 @@
 
     
     .screen {
-      width: 1920px;
-      height: 1080px;
-      position: relative;
-      transform-origin: center;
-      box-shadow: 0 0 40px black;
-    }
+  width: 1920px;
+  height: 1080px;
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+             scale(calc(min(100vw / 1920, 100vh / 1080)));
+
+  transform-origin: center;
+}
 
    
     @media (max-width: 1920px), (max-height: 1080px) {
@@ -114,8 +119,8 @@
 
     
     <div id="meta">
-      <span class="update">last updated 5/1/26 16:05</span>
-      <span class="goals">:This update: Moved pengion up abit</span>
+      <span class="update">last updated 5/1/26 17:02</span>
+      <span class="goals">:This update: Changed screen rules</span>
     </div>
 
     
