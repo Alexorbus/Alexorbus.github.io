@@ -99,6 +99,7 @@
 </head>
 
 <body>
+  <audio id="scream" src="scream.mp3" loop></audio>
 
   <div class="screen">
 
@@ -122,6 +123,38 @@
   </div>
 
   <script>
+
+    <script>
+const scream = document.getElementById("scream");
+
+
+function enterFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch(() => {});
+  }
+}
+
+
+function handleFullscreenChange() {
+  if (!document.fullscreenElement) {
+    
+    scream.play().catch(() => {});
+  } else {
+    
+    scream.pause();
+    scream.currentTime = 0;
+  }
+}
+
+
+document.addEventListener("fullscreenchange", handleFullscreenChange);
+
+
+document.addEventListener("click", enterFullscreen, { once: true });
+
+
+document.getElementById("dialogueBox").addEventListener("click", enterFullscreen);
+</script>
     const dialogue = [
       "...",
       "broadcast starting",
