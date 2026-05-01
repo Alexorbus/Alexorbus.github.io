@@ -45,7 +45,138 @@ body {
   right: 5%;
   top: 50%;
   transform: translateY(-50%);
-  width: 300px; /* adjust size */
+  width: 300px; /* adjust size */<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: black;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+
+    .scene {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    #background {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    #desk {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 3;
+    }
+
+    #character {
+      position: absolute;
+      bottom: 120px;
+      left: 40px;
+      width: 300px;
+      z-index: 2;
+    }
+
+    #overlay {
+      position: absolute;
+      right: 5%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 300px;
+      z-index: 4;
+    }
+
+    #dialogueBox {
+      position: absolute;
+      bottom: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      z-index: 5;
+      cursor: pointer;
+    }
+
+    #dialogueText {
+      font-size: 18px;
+    }
+
+    #meta {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 6;
+      font-size: 12px;
+      opacity: 0.5;
+    }
+
+    .update, .goals {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="scene">
+
+    <img id="background" src="placeholderbackround.png">
+    <img id="character" src="placeholderduck.png">
+    <img id="desk" src="deskplaceholder.png">
+    <img id="overlay" src="newoverlayplaceholder.png">
+
+    <div id="meta">
+      <span class="update">last updated 4/28/26 16:26</span>
+      <span class="goals">:This update: intro system working</span>
+    </div>
+
+    <div id="dialogueBox">
+      <div id="dialogueText">...</div>
+    </div>
+
+  </div>
+
+  <script>
+    const dialogue = [
+      "...",
+      "broadcast starting",
+      "this is not live",
+      "but it is still happening",
+      "today’s topic:",
+      "things i care about"
+    ];
+
+    let index = 0;
+    const textBox = document.getElementById("dialogueText");
+
+    function nextLine() {
+      if (index < dialogue.length) {
+        textBox.textContent = dialogue[index];
+        index++;
+      } else {
+        index = 0;
+        textBox.textContent = "...";
+      }
+    }
+
+    document.getElementById("dialogueBox").onclick = nextLine;
+
+    nextLine();
+  </script>
+
+</body>
+</html>
   z-index: 4;
 }
 
