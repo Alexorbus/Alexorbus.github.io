@@ -1,121 +1,81 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-      background: black;
-      font-family: Arial, sans-serif;
-      color: white;
-    }
+body {
+  margin: 0;
+  overflow: hidden;
+  background: black;
+  font-family: Arial, sans-serif;
+  color: white;
+}
 
-    /*this is the scene layers, you shouldnt have to change this, the order is right below this*/
-    .scene {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-    }
+.scene {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
 
-    .layer {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      pointer-events: none;
-    }
+/* backround */
+#background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
 
-    /*this part is the order of the layers, starting at 1 */
-    #background { z-index: 1; }
-    #desk { z-index: 2; }
-    #character { z-index: 3; }
-    #overlay { z-index: 4; }
+/*desk  */
+#desk {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 3;
+}
 
-    /*the dialog box */
-    #dialogueBox {
-      position: absolute;
-      bottom: 5%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80%;
-      background: rgba(0, 0, 0, 0.7);
-      padding: 20px;
-      z-index: 5;
-      cursor: pointer;
-    }
+/* duck */
+#character {
+  position: absolute;
+  bottom: 120px; /* adjust this to "peek" above desk */
+  left: 40px;
+  width: 300px; /* scale control */
+  z-index: 2;
+}
 
-    #dialogueText {
-      font-size: 18px;
-    }
+/* news */
+#overlay {
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 300px; /* adjust size */
+  z-index: 4;
+}
 
-    /* the update/goals text */
-    #meta {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      z-index: 6;
-      font-size: 12px;
-      opacity: 0.5;
-    }
+/* dialog */
+#dialogueBox {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  z-index: 5;
+  cursor: pointer;
+}
 
-    .update, .goals {
-      display: block;
-    }
-  </style>
-</head>
+#dialogueText {
+  font-size: 18px;
+}
 
-<body>
+/* egughuhg*/
+#meta {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 6;
+  font-size: 12px;
+  opacity: 0.5;
+}
 
-  <div class="scene">
-
-    <!-- actual layers, easy to edit too -->
-    <img id="background" class="layer" src="placeholderbackround.png">
-    <img id="desk" class="layer" src="deskplaceholder.png">
-    <img id="character" class="layer" src="placeholderduck.png">
-    <img id="overlay" class="layer" src="newoverlayplaceholder.png">
-
-    <!-- the goals n stuff -->
-    <div id="meta">
-      <span class="update">last updated 4/28/26 16:26</span>
-      <span class="goals">:This update: intro system working</span>
-    </div>
-
-    <!-- dialog box -->
-    <div id="dialogueBox">
-      <div id="dialogueText">…</div>
-    </div>
-
-  </div>
-
-  <script>
-    const dialogue = [
-      "…",
-      "you’re watching something",
-      "this is not a broadcast",
-      "but it is still being shown",
-      "today’s topic:",
-      "things i find interesting",
-      "click again"
-    ];
-
-    let index = 0;
-    const textBox = document.getElementById("dialogueText");
-
-    function nextLine() {
-      if (index < dialogue.length) {
-        textBox.textContent = dialogue[index];
-        index++;
-      } else {
-        index = 0;
-        textBox.textContent = "...";
-      }
-    }
-
-    document.getElementById("dialogueBox").onclick = nextLine;
-
-    // first line
-    nextLine();
-  </script>
-
-</body>
-</html>
+.update, .goals {
+  display: block;
+}
