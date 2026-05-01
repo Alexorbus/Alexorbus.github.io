@@ -1,51 +1,4 @@
-body {
-  margin: 0;
-  overflow: hidden;
-  background: black;
-  font-family: Arial, sans-serif;
-  color: white;
-}
-
-.scene {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-}
-
-
-#background {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-}
-
-
-#desk {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: 3;
-}
-
-
-#character {
-  position: absolute;
-  bottom: 120px; /* adjust this to "peek" above desk */
-  left: 40px;
-  width: 300px; /* scale control */
-  z-index: 2;
-}
-
-
-#overlay {
-  position: absolute;
-  right: 5%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 300px; /* adjust size */<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <style>
@@ -177,36 +130,3 @@ body {
 
 </body>
 </html>
-  z-index: 4;
-}
-
-
-#dialogueBox {
-  position: absolute;
-  bottom: 5%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  background: rgba(0, 0, 0, 0.7);
-  padding: 20px;
-  z-index: 5;
-  cursor: pointer;
-}
-
-#dialogueText {
-  font-size: 18px;
-}
-
-
-#meta {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  z-index: 6;
-  font-size: 12px;
-  opacity: 0.5;
-}
-
-.update, .goals {
-  display: block;
-}
