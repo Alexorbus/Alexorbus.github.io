@@ -34,9 +34,11 @@
 
     #character {
   position: absolute;
-  bottom: 200px;   
-  left: 6%;
-  width: 800px;   
+  bottom: 180px;
+  left: 80px;
+  width: 420px;      
+  max-width: none;  
+  height: auto;
   z-index: 2;
 }
 
@@ -44,17 +46,16 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  object-fit: cover; 
+  object-fit: contain;   
   top: 0;
   left: 0;
   z-index: 4;
-  pointer-events: none; 
+  pointer-events: none;
 }
-    }
 
     #dialogueBox {
       position: absolute;
-      bottom: 50%;
+      bottom: 12%;
       left: 50%;
       transform: translateX(-50%);
       width: 80%;
@@ -93,8 +94,8 @@
     <img id="overlay" src="newoverlayplaceholder.png">
 
     <div id="meta">
-      <span class="update">last updated 5/1/26 16:05</span>
-      <span class="goals">:This update: Moved pengion up abit</span>
+      <span class="update">last updated 5/1/26 16:46</span>
+      <span class="goals">:This update: Penguin should no longer scale with window, and news overlay should be uncropped </span>
     </div>
 
     <div id="dialogueBox">
