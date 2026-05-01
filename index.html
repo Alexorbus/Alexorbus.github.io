@@ -2,149 +2,119 @@
 <html>
 <head>
   <style>
-    #intro {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+    body {
+      margin: 0;
+      overflow: hidden;
       background: black;
-      z-index: 9999;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      font-family: Arial, sans-serif;
+      color: white;
     }
 
-    #intro video,
-    #intro img {
+    /*this is the scene layers, you shouldnt have to change this, the order is right below this*/
+    .scene {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .layer {
+      position: absolute;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      pointer-events: none;
     }
 
-    .fade-out {
-      opacity: 0;
-      transition: opacity 1s ease;
+    /*this part is the order of the layers, starting at 1 */
+    #background { z-index: 1; }
+    #desk { z-index: 2; }
+    #character { z-index: 3; }
+    #overlay { z-index: 4; }
+
+    /*the dialog box */
+    #dialogueBox {
+      position: absolute;
+      bottom: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      z-index: 5;
+      cursor: pointer;
     }
 
-    body {
-      background: url('backround2.gif') repeat;
-      color: white;
-      font-family: Arial, sans-serif;
-      text-align: center;
+    #dialogueText {
+      font-size: 18px;
     }
 
-    img {
-      max-width: 90%;
-      height: auto;
-      margin: 20px;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 10px;
-    }
-
-    .update {
-      display: block;
+    /* the update/goals text */
+    #meta {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 6;
+      font-size: 12px;
       opacity: 0.5;
-      font-size: 0.8em;
-      margin-top: 5px;
     }
 
-    .goals {
+    .update, .goals {
       display: block;
-      opacity: 0.5;
-      font-size: 0.8em;
-      margin-top: 3px;
-    }
-
-    a {
-      color: cyan;
-      text-decoration: none;
-      display: block;
-      margin: 10px;
     }
   </style>
 </head>
 
 <body>
 
-  <div id="intro">
+  <div class="scene">
 
-    <video id="introVideo" autoplay muted playsinline>
-      <source src="intro.mp4" type="video/mp4">
-    </video>
+    <!-- actual layers, easy to edit too -->
+    <img id="background" class="layer" src="placeholderbackround.png">
+    <img id="desk" class="layer" src="deskplaceholder.png">
+    <img id="character" class="layer" src="placeholderduck.png">
+    <img id="overlay" class="layer" src="newoverlayplaceholder.png">
 
-    <img id="introLoop" src="introloop.gif" style="display:none;">
+    <!-- the goals n stuff -->
+    <div id="meta">
+      <span class="update">last updated 4/28/26 16:26</span>
+      <span class="goals">:This update: intro system working</span>
+    </div>
 
-    <video id="outroVideo" playsinline style="display:none;">
-      <source src="outro.mp4" type="video/mp4">
-    </video>
+    <!-- dialog box -->
+    <div id="dialogueBox">
+      <div id="dialogueText">…</div>
+    </div>
 
   </div>
 
-  <audio id="bgMusic" loop>
-    <source src="backmusic.mp4" type="audio/mp4">
-  </audio>
-
-  <h1>Alex (or bus)</h1>
-  <p>
-    v11
-    <span class="update">last updated 4/28/26 16:26</span>
-    <span class="goals">:This update: intro system working</span>
-  </p>
-
-  <img src="Placeholder710x711.png">
-  <img src="placeholdr1259x643.png">
-
-  <h2>nothing else here</h2>
-  <a href="https://www.instagram.com/alexorbus/" target="_blank">
-    Instagram
-  </a>
-
   <script>
-    const introVideo = document.getElementById("introVideo");
-    const introLoop = document.getElementById("introLoop");
-    const outroVideo = document.getElementById("outroVideo");
-    const introContainer = document.getElementById("intro");
-    const bgMusic = document.getElementById("bgMusic");
+    const dialogue = [
+      "…",
+      "you’re watching something",
+      "this is not a broadcast",
+      "but it is still being shown",
+      "today’s topic:",
+      "things i find interesting",
+      "click again"
+    ];
 
-    // intro to loop
-    introVideo.onended = () => {
-      introVideo.style.display = "none";
-      introLoop.style.display = "block";
-    };
+    let index = 0;
+    const textBox = document.getElementById("dialogueText");
 
-    // click to outro and music
-    introContainer.onclick = () => {
-      if (introLoop.style.display !== "none") {
-        introLoop.style.display = "none";
-        outroVideo.style.display = "block";
-        outroVideo.play();
-
-        // start music
-        bgMusic.volume = 0;
-        bgMusic.play();
-
-        // fade in music
-        let vol = 0;
-        const fade = setInterval(() => {
-          if (vol < 0.5) {
-            vol += 0.01;
-            bgMusic.volume = vol;
-          } else {
-            clearInterval(fade);
-          }
-        }, 100);
+    function nextLine() {
+      if (index < dialogue.length) {
+        textBox.textContent = dialogue[index];
+        index++;
+      } else {
+        index = 0;
+        textBox.textContent = "...";
       }
-    };
+    }
 
-    // outro then fade to site
-    outroVideo.onended = () => {
-      introContainer.classList.add("fade-out");
+    document.getElementById("dialogueBox").onclick = nextLine;
 
-      setTimeout(() => {
-        introContainer.style.display = "none";
-      }, 1000);
-    };
+    // first line
+    nextLine();
   </script>
 
 </body>
